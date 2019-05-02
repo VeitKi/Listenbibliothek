@@ -1,6 +1,6 @@
-package de.dhbw.ravensburg;
+package de.dhbw.ravensburg.Interface;
 
-public interface List <T> {
+public interface List <T>{
 
 
         public boolean isEmpty();

@@ -1,6 +1,6 @@
 package de.dhbw.ravensburg.Stack;
 
-public class Stack<T> {
+public class Stack<T>implements List<T>{
   
   
   //Variablendeklaration

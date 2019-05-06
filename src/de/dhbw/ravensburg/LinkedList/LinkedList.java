@@ -4,16 +4,9 @@ import de.dhbw.ravensburg.Interface.List;
 
 public class LinkedList implements List{
 
-
     @Override
     public boolean isEmpty() {
-        
-         if (variable == null) {
-                return true;
-            }
-            else {
-                return false;
-            }
+        return false;
     }
 
     @Override

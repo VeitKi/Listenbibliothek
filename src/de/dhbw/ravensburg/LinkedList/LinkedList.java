@@ -7,7 +7,13 @@ public class LinkedList implements List{
 
     @Override
     public boolean isEmpty() {
-        return false;
+        
+         if (variable == null) {
+                return true;
+            }
+            else {
+                return false;
+            }
     }
 
     @Override

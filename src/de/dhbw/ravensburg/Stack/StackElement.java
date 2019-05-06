@@ -1,4 +1,4 @@
 package de.dhbw.ravensburg.Stack;
 
-public class StackElement {
+public class StackElement<T> {
 }

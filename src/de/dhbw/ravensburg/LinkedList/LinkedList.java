@@ -9,8 +9,6 @@ public class LinkedList implements List{
         return false;
     }
 
-
-
     @Override
     public int size() {
         return 0;

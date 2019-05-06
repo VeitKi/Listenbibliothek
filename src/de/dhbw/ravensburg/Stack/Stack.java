@@ -1,82 +1,52 @@
 package de.dhbw.ravensburg.Stack;
 
-public class Stack<T>implements List<T>{
-  
-  
-  //Variablendeklaration
+import de.dhbw.ravensburg.Interface.List;
 
-    public Stack<T> next;
+public class Stack <T>implements List {
 
-    private T variable;
-
-
-    //Konstruktor
-
-    public Stack(T variable) {
-
-        this.variable= variable;
-
-    }
-
-    //Ein neues Element wird dem Stack hinzugefügt
-
-    public void addElement(T item) {
-
-        next= this;
-
-        variable= item;
-
-    }
-
-    //Prüfung, ob der Stack leer ist oder Elemente enthält
-
+    @Override
     public boolean isEmpty() {
-
-        if (variable == null) {
-
-            return true;
-        }
-
-        else {
-
-
-            return false;
-        }
-
+        return false;
     }
 
-    //Gebe das oberste Element des Stacks zurück
-
-    public T peek (){
-
-
-        return variable;
-    }
-
-    //Den kompletten Stackinhalt löschen
-
-    public void clear() {
-
-        next = null;
-        variable = null;
-    }
-
-    int n;
-
+    @Override
     public int size() {
+        return 0;
+    }
 
-        T curElement = variable;
+    @Override
+    public void addElement(Object value) {
 
+    }
 
-        for(int i=0; curElement!=null; i++) {
+    @Override
+    public void addOtherList(List list) {
 
-            curElement=curElement.next();
+    }
 
-        }
+    @Override
+    public void removeAll() {
 
-        return n;
+    }
 
-    } 
-  
+    @Override
+    public boolean contains(Object value) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(List list) {
+        return false;
+    }
+
+    @Override
+    public void removeCertain(Object value) {
+
+    }
+
+    @Override
+    public Object[] returnAsArray() {
+        return new Object[0];
+    }
 }
-}
+

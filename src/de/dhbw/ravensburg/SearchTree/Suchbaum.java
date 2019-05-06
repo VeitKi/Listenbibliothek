@@ -1,4 +1,4 @@
-package de.dhbw.ravensburg.Suchbaum;
+package de.dhbw.ravensburg.SearchTree;
 
 import de.dhbw.ravensburg.Interface.List;
 

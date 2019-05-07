@@ -1,6 +1,6 @@
 package de.dhbw.ravensburg.Interface;
 
-public interface List <T>{
+public interface List <T> {
 
         /**
          * Checks if the list is empty

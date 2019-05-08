@@ -15,6 +15,6 @@ public interface Sortable {
     /**
      * An own algorithm to sort the list
      */
-    void otherSort();
+    void insertionSort();
 
 }

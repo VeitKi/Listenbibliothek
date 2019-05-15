@@ -1,22 +1,24 @@
 package de.dhbw.ravensburg.SortingAlgorithms;
 
-public class InsertionSort {
+import de.dhbw.ravensburg.Interface.List;
 
-    void sort(int arr[])
+public class InsertionSort<T extends Comparable> {
+
+    void insertionSort(List list)
     {
-        int n = arr.length;
+        int n = list.size();
         for (int i = 1; i < n; ++i) {
-            int key = arr[i];
+            Comparable key = list.getElement(i);
             int j = i - 1;
 
             /* Move elements of arr[0..i-1], that are
                greater than key, to one position ahead
                of their current position */
-            while (j >= 0 && arr[j] > key) {
-                arr[j + 1] = arr[j];
+            while (j >= 0 && list[j] > key) {
+                list[j + 1] = list[j];
                 j = j - 1;
             }
-            arr[j + 1] = key;
+            list[j + 1] = key;
         }
     }
 }

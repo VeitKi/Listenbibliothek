@@ -1,6 +1,6 @@
 package de.dhbw.ravensburg.Interface;
 
-public interface List <T> {
+public interface List <T extends Comparable>  {
 
         /**
          * Checks if the list is empty
@@ -21,6 +21,13 @@ public interface List <T> {
          * @param value the value added to the list
          */
         void addElement(T value);
+
+        /**
+         * Adds an element at a certain position
+         * @param value
+         * @param i
+         */
+        void addElementAt(T value, int i);
 
 
         /**
@@ -64,6 +71,13 @@ public interface List <T> {
          * @return the list as array
          */
         T[] returnAsArray();
+
+        /**
+         * Gives element at certain position
+         * @param
+         * @return returns certain element
+         */
+        T getElement(int i);
 
 
 

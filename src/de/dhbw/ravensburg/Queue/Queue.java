@@ -4,9 +4,13 @@ import de.dhbw.ravensburg.Interface.List;
 
 public class Queue implements List {
 
+    QueueElement firstElement;
+    QueueElement lastElement;
+
     @Override
     public boolean isEmpty() {
-        return false;
+
+        return firstElement ==  null;
     }
 
     @Override
@@ -15,8 +19,14 @@ public class Queue implements List {
     }
 
     @Override
-    public void addElement(Object value) {
-
+    public void addElement(QueueElement element) {
+        if(this.isEmpty()) {
+            firstElement = element;
+            lastElement = element;
+        } else {
+            lastElement.setNext(element);
+            lastElement = element;
+        }
     }
 
     @Override
@@ -45,7 +55,32 @@ public class Queue implements List {
     }
 
     @Override
-    public Object[] returnAsArray() {
-        return new Object[0];
+    public T[] returnAsArray() {
+        return new T[];
+    }
+
+    @Override
+    public void addElement(Comparable value) {
+
+    }
+
+    @Override
+    public void addElementAt(Comparable value, int i) {
+
+    }
+
+    @Override
+    public boolean contains(Comparable value) {
+        return false;
+    }
+
+    @Override
+    public void removeCertain(Comparable value) {
+
+    }
+
+    @Override
+    public Comparable getElement(int i) {
+        return null;
     }
 }

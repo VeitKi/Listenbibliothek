@@ -1,5 +1,9 @@
 package de.dhbw.ravensburg.Interface;
 
+/**
+ *
+ * @param <T> Type of the list
+ */
 public interface List <T extends Comparable>  {
 
         /**
@@ -7,7 +11,6 @@ public interface List <T extends Comparable>  {
          * @return returns true if the list is empty
          */
         boolean isEmpty();
-
 
         /**
          * Checks the number of elements in the list
@@ -70,7 +73,7 @@ public interface List <T extends Comparable>  {
          * Returns list as Array
          * @return the list as array
          */
-        T[] returnAsArray();
+        Object[] returnAsArray();
 
         /**
          * Gives element at certain position
@@ -78,9 +81,5 @@ public interface List <T extends Comparable>  {
          * @return returns certain element
          */
         T getElement(int i);
-
-
-
-        String toString();
 
 }

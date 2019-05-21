@@ -4,7 +4,7 @@ package de.dhbw.ravensburg.SortingAlgorithms;
 import de.dhbw.ravensburg.Interface.List;
 
 
-public class BubbleSort<T extends Comparable> {
+public class BubbleSort <T extends Comparable> {
 
     public void bubbleSort(List list) {
 

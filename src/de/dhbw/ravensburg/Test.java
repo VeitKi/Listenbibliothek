@@ -1,7 +1,11 @@
 package de.dhbw.ravensburg;
 
 
-import static de.dhbw.ravensburg.SortingAlgorithms.BubbleSort.bubbleSort;
+import de.dhbw.ravensburg.Interface.List;
+import de.dhbw.ravensburg.SortingAlgorithms.BubbleSort;
+
+import java.util.ArrayList;
+
 
 public class Test {
 
@@ -12,18 +16,16 @@ public class Test {
 
     void run(){
 
-        int[] array = new int[6];
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        l.add(1);
+        l.add(9);
+        l.add(3);
+        l.add(5);
+        l.add(4);
 
-        array[0] = 999;
-        array[1] = 5000;
-        array[2] = 10;
-        array[3] = 100;
-        array[4] = 10000;
+        new BubbleSort<>().bubbleSort(l);
 
-        bubbleSort(array);
-
-        for (int element: array
-             ) {
+        for (Integer element: l) {
             System.out.println(element);
 
         }

@@ -2,66 +2,82 @@ package de.dhbw.ravensburg.Queue;
 
 import de.dhbw.ravensburg.Interface.List;
 
-public class Queue implements List {
+import java.lang.reflect.Array;
+
+public class Queue <T extends Comparable> implements List<T> {
 
     QueueElement firstElement;
     QueueElement lastElement;
 
     @Override
     public boolean isEmpty() {
-
         return firstElement ==  null;
     }
 
     @Override
     public int size() {
-        return 0;
+        return firstElement.count();
     }
 
     @Override
-    public void addElement(QueueElement element) {
+    public void addElement(T value){
         if(this.isEmpty()) {
-            firstElement = element;
-            lastElement = element;
+            firstElement = new QueueElement(value);
+            lastElement = firstElement;
         } else {
-            lastElement.setNext(element);
-            lastElement = element;
+            lastElement = lastElement.setNext(value);
         }
     }
 
     @Override
     public void addOtherList(List list) {
 
+        for(int i=0; i<=size();i++){
+            lastElement = lastElement.setNext(list.getElement(i));
+        }
     }
 
     @Override
     public void removeAll() {
 
+            lastElement = null;
+            firstElement = null;
     }
 
     @Override
-    public boolean contains(Object value) {
+    public boolean contains(T value) {
+
+        for(int i=0; i<=size();i++ ){
+            if(getElement(i) == value){
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean containsAll(List list) {
-        return false;
+
+        for(int i=0; i<=size();i++ ){
+            if(!this.contains((T)list.getElement(i))){
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public void removeCertain(Object value) {
+    public void removeCertain(T value) {
 
     }
 
     @Override
-    public T[] returnAsArray() {
-        return new T[];
-    }
-
-    @Override
-    public void addElement(Comparable value) {
-
+    public Object[] returnAsArray() {
+        Object[] array = new Object[size()];
+        for(int i=0; i<=size();i++){
+            array[i] = (Object) this.getElement(i);
+        }
+        return array;
     }
 
     @Override
@@ -70,17 +86,29 @@ public class Queue implements List {
     }
 
     @Override
-    public boolean contains(Comparable value) {
-        return false;
+    public T getElement(int i) {
+        return (T) firstElement.getElement(i);
     }
 
-    @Override
-    public void removeCertain(Comparable value) {
+    /**
+     * Gives first element of the list
+     * @return returns first element
+     */
+    public T returnFirst(){
 
+        return (T)firstElement;
     }
 
-    @Override
-    public Comparable getElement(int i) {
-        return null;
+    /**
+     * Gives first element of the list and deletes it
+     * @return returns first element
+     */
+    public T returnFirstAndDelete(){
+
+        T first = (T)firstElement;
+        firstElement = null;
+
+        return first;
+
     }
 }

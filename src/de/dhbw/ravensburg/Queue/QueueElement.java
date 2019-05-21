@@ -5,9 +5,8 @@ public class QueueElement <T> {
     private T value;
     private QueueElement <T> next;
 
-    public QueueElement(T value, QueueElement<T> next) {
+    public QueueElement(T value) {
         this.value = value;
-        this.next = next;
     }
 
     public T getValue() {
@@ -22,8 +21,31 @@ public class QueueElement <T> {
         return next;
     }
 
-    public void setNext(QueueElement<T> next) {
-        this.next = next;
+    public QueueElement setNext(T value) {
+        next = new QueueElement<>(value);
+        return next;
+    }
+
+    public int count(){
+        if (next == null) {
+            return 1;
+        } else {
+            return next.count() +1;
+        }
+
+    }
+    public T getElement(int i){
+        i--;
+        if(i==0){
+            return(value);
+        }
+        else{
+            if(next != null){
+                return next.getElement(i);
+            }else{
+                return null;
+            }
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package de.dhbw.ravensburg;
 
 
 import de.dhbw.ravensburg.Interface.List;
+import de.dhbw.ravensburg.Queue.Queue;
 import de.dhbw.ravensburg.SortingAlgorithms.BubbleSort;
 
 import java.util.ArrayList;
@@ -9,26 +10,24 @@ import java.util.ArrayList;
 
 public class Test {
 
+    BubbleSort<Integer> bs = new BubbleSort<>();
+
     public static void main(String[]args){
 
         new Test().run();
     }
 
     void run(){
+        Queue<Integer> q = new Queue<>();
+        q.addElement(1);
+        q.addElement(2);
+        q.addElement(4);
+        q.addElement(3);
+        q.addElement(0);
 
-        ArrayList<Integer> l = new ArrayList<Integer>();
-        l.add(1);
-        l.add(9);
-        l.add(3);
-        l.add(5);
-        l.add(4);
+        bs.bubbleSort(q);
 
-        new BubbleSort<>().bubbleSort(l);
-
-        for (Integer element: l) {
-            System.out.println(element);
-
-        }
+        System.out.println(q.toString());
 
     }
 }

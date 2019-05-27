@@ -1,52 +1,104 @@
 package de.dhbw.ravensburg.Stack;
 
-import de.dhbw.ravensburg.Interface.List;
+import java.util.NoSuchElementException;
 
-public class Stack <T>implements List {
+public class Stack<T> implements List {
+
+
+
+    //Stack aufbauen
+    private int currentHigh = 0;
+    StackElement<T> highestElement = null;
+    Stack<String> stack = new Stack<>();
+
 
     @Override
     public boolean isEmpty() {
-        return false;
-    }
 
-    @Override
-    public int size() {
-        return 0;
-    }
+        if (highestElement == null) {
 
-    @Override
-    public void addElement(Object value) {
+            return true;
+        } else {
+
+            return false;
+        }
 
     }
 
     @Override
-    public void addOtherList(List list) {
+
+    /**
+     *
+     */
+
+    //Fügt ein Element hinzu
+    public void push(Comparable value) {
+        StackElement<T> newElement = new StackElement<T>();
+        newElement.setValue(value);
+        newElement.setNext(highestElement);
+        highestElement = newElement;
+        currentHigh++;
 
     }
+
 
     @Override
     public void removeAll() {
 
+        highestElement=null;
+
+        }
+
+
+
+    public int size() {
+
+        return currentHigh;
+    }
+
+    //Das oberste Element wird ausgegeben und anschließend gelöscht
+
+    public Comparable pop() {
+
+        if (isEmpty()) {
+            throw new NoSuchElementException("Underflow Exception");
+        } else {
+
+            currentHigh--;
+            Comparable value = highestElement.getValue();
+            highestElement = highestElement.getNext();
+            return value;
+
+        }
+    }
+
+    // Das oberste Element wird angezeigt
+    public StackElement peek() {
+
+        return highestElement;
+
     }
 
     @Override
-    public boolean contains(Object value) {
-        return false;
-    }
+    public boolean contains(T content) {
 
-    @Override
-    public boolean containsAll(List list) {
-        return false;
-    }
-
-    @Override
-    public void removeCertain(Object value) {
+        
 
     }
 
+
     @Override
-    public Object[] returnAsArray() {
-        return new Object[0];
+    public Comparable[] returnAsArray() {
+
+        Comparable[] array = new Comparable[size()];
+
+        for (int i=size(); 0< i; i--) {
+
+            array[i] = this.pop();
+
+        }
+
+
+        return array;
     }
 }
-

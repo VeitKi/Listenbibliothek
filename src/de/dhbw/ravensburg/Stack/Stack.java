@@ -80,11 +80,22 @@ public class Stack<T> implements List {
     }
 
     @Override
-    public boolean contains(T content) {
 
-        
-
+    public boolean contains(T inputValue){
+        return contains(highestElement,inputValue);
     }
+
+    private boolean contains(StackElement<T> stackElement,T inputValue)
+    {
+        if(stackElement == null)
+            return false;
+
+        if(stackElement.getValue().equals(inputValue))
+            return true;
+
+        return contains(stackElement.next,inputValue);
+    }
+
 
 
     @Override

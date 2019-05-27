@@ -5,7 +5,7 @@ public class LinkedList <T> {
 
     //Attribute
     LinkedListElement first;
-    T[] output;
+    Object[] output;
 
     //Im Konstruktor für die List wird direkt ein Endpunkt gesetzt
     public LinkedList() {
@@ -20,7 +20,7 @@ public class LinkedList <T> {
 
     // 2. Die Länge der Liste wird geprüft
     public int size() {
-        return first.size();
+        return first.length();
     }
 
     // 3. Ein Element wird hinzugefügt
@@ -29,7 +29,7 @@ public class LinkedList <T> {
     }
 
     // 4. fügt eine alle Elemente einer anderen Liste der aktuellen hinzu; Man sucht das Element an der Stelle i, nimmt davon den content, dieser wird gecastet und anschließend der Liste hinzugefügt
-    public void addOtherList(List newList) {
+    public void addOtherList(LinkedList newList) {
         for (int i = 0; i < newList.size(); i++) {
             addElement((T) newList.getElementAt(i));
         }
@@ -46,7 +46,7 @@ public class LinkedList <T> {
     }
 
     // 7. Überprüft ob alle Elemente einer Liste in der Liste enthalten sind
-    public boolean containsAll(List otherList) {
+    public boolean containsAll(LinkedList otherList) {
         for (int i = 0; i < otherList.size(); i++) {
             if (!contains((T) otherList.getElementAt(i))) {
                 return false;
@@ -61,8 +61,8 @@ public class LinkedList <T> {
     }
 
     // 9. Fügt alle Elemente der Liste in ein Array ein
-    public Object[] generateOutput() {
-        output = new Object[size()];
+    public Object[] returnAsArray() {
+        output = new Object[this.size()];
         for (int i = 0; i < size(); i++) {
             output[i] = (Object) getElementAt(i);
         } return output;

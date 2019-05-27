@@ -22,7 +22,7 @@ public class QueueElement <T> {
     }
 
     public QueueElement setNext(T value) {
-        next = new QueueElement<>(value);
+        next = new QueueElement<T>(value);
         return next;
     }
 

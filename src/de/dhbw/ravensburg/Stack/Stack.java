@@ -73,10 +73,9 @@ public class Stack<T> implements List {
     }
 
     // Das oberste Element wird angezeigt
-    public StackElement peek() {
-
-        return highestElement;
-
+    public Comparable peek(){
+        Comparable value = highestElement.getValue();
+        return value;
     }
 
     @Override

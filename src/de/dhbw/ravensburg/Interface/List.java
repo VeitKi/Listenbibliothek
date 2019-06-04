@@ -30,7 +30,7 @@ public interface List <T extends Comparable>  {
          * @param value
          * @param i
          */
-        void addElementAt(T value, int i);
+        void addElementAt(int index, T value);
 
 
         /**

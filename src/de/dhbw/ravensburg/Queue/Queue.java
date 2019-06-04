@@ -69,6 +69,7 @@ public class Queue <T extends Comparable> implements List<T> {
     @Override
     public void removeCertain(T value) {
 
+        firstElement.removeCertain(value);
     }
 
     @Override
@@ -81,7 +82,8 @@ public class Queue <T extends Comparable> implements List<T> {
     }
 
     @Override
-    public void addElementAt(Comparable value, int i) {
+    public void addElementAt(int index, T value) {
+        firstElement.add(index, value);
 
     }
 

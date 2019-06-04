@@ -2,6 +2,10 @@ package de.dhbw.ravensburg.SortingAlgorithms;
 
 import de.dhbw.ravensburg.Interface.List;
 
+/**
+ * Sorts a list using insertion sort: goes trough list, if an element is greater it is moved one position forward
+ * @param <T>
+ */
 public class InsertionSort<T extends Comparable> {
 
     void insertionSort(List list)
@@ -11,9 +15,6 @@ public class InsertionSort<T extends Comparable> {
             Comparable key = list.getElement(i);
             int j = i - 1;
 
-            /* Move elements of arr[0..i-1], that are
-               greater than key, to one position ahead
-               of their current position */
             while (j >= 0 && list[j] > key) {
                 list[j + 1] = list[j];
                 j = j - 1;

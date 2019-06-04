@@ -47,5 +47,25 @@ public class QueueElement <T> {
             }
         }
     }
+    public QueueElement add(int index, T value){
+        index--;
+        if(index == 0) {
+            QueueElement sub = new QueueElement<>(value);
+            sub.next = this;
+            return sub;
+        }else{
+            next.add(index, value);
+            return this;
+        }
+    }
+    public QueueElement<T> removeCertain(T value){
+        Index--;
+        if(value==0) {
+            return next;
+        } else{
+            next.removeCertain(value);
+            return this;
+        }
+    }
 
 }

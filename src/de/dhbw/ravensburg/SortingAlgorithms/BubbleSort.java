@@ -3,7 +3,10 @@ package de.dhbw.ravensburg.SortingAlgorithms;
 
 import de.dhbw.ravensburg.Interface.List;
 
-
+/**
+ * Sorts a list using bubble sort: it compares a pair of elements and swaps their position if they are in the wrong order.
+ * @param <T>
+ */
 public class BubbleSort <T extends Comparable> {
 
     public void bubbleSort(List list) {

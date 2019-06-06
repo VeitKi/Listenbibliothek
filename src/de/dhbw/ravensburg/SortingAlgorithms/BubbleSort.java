@@ -9,17 +9,20 @@ import de.dhbw.ravensburg.Interface.List;
  */
 public class BubbleSort <T extends Comparable> {
 
-    public void bubbleSort(List list) {
+    void bubbleSort(int[] list) {
 
-        int n = list.size();
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (list.getElement(j).compareTo(list.getElement(j + 1)) > 0) {
+        int n = list.length;
+        int temp = 0;
 
-                    Comparable temp = list.getElement(j);
-                    list.addElementAt(list.getElement(j + 1), j);
-                    list.addElementAt(temp, j + 1);
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+
+                if (list[j - 1] > list[j]) {
+                    temp = list[j - 1];
+                    list[j - 1] = list[j];
+                    list[j] = temp;
                 }
+
             }
         }
     }

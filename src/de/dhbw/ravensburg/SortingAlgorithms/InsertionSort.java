@@ -8,18 +8,17 @@ import de.dhbw.ravensburg.Interface.List;
  */
 public class InsertionSort<T extends Comparable> {
 
-    void insertionSort(List list)
+    void insertionSort(int[] list)
     {
-        int n = list.size();
-        for (int i = 1; i < n; ++i) {
-            Comparable key = list.getElement(i);
-            int j = i - 1;
-
-            while (j >= 0 && list[j] > key) {
-                list[j + 1] = list[j];
-                j = j - 1;
+        int n = list.length;
+        for (int j = 1; j < n; j++) {
+            int key = list[j];
+            int i = j-1;
+            while ( (i > -1) && ( list [i] > key ) ) {
+                list [i+1] = list [i];
+                i--;
             }
-            list[j + 1] = key;
+            list[i+1] = key;
         }
     }
 }

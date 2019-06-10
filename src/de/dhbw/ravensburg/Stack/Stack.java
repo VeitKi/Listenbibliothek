@@ -5,14 +5,23 @@ import java.util.NoSuchElementException;
 public class Stack<T> implements List {
 
 
-
-    //Stack aufbauen
-    private int currentHigh = 0;
+	/**
+	 * defining parameters
+	 */
+	
+	//size from the stack
+	private int currentHigh = 0;
+	
+	//"Head" of the stack
     StackElement<T> highestElement = null;
-    Stack<String> stack = new Stack<>();
 
 
-    @Override
+
+ 
+    /**
+     * 
+     * @return if the stack is Empty or has elements
+     */
     public boolean isEmpty() {
 
         if (highestElement == null) {
@@ -25,39 +34,47 @@ public class Stack<T> implements List {
 
     }
 
-    @Override
-
+    
+    //adds an element
     /**
-     *
+     * adding an element to the stack
+     * @param value element which we want to add into the stack
      */
-
-    //Fügt ein Element hinzu
     public void push(Comparable value) {
         StackElement<T> newElement = new StackElement<T>();
         newElement.setValue(value);
         newElement.setNext(highestElement);
         highestElement = newElement;
+        
+        //size grows
         currentHigh++;
 
     }
 
 
-    @Override
+    /**
+     * remove all elements, the stack has to be empty
+     */
     public void removeAll() {
 
         highestElement=null;
 
         }
-
-
-
+    
+    /**
+     * how many element has the stack?
+     * @return the size of the stack
+     */
     public int size() {
 
         return currentHigh;
     }
 
-    //Das oberste Element wird ausgegeben und anschließend gelöscht
-
+    
+    /**
+     * returns the highest element and delete it from the stack
+     * @return the highest element of the stack
+     */
     public Comparable pop() {
 
         if (isEmpty()) {
@@ -71,19 +88,40 @@ public class Stack<T> implements List {
 
         }
     }
+    
+    
 
-    // Das oberste Element wird angezeigt
+    /**
+     * returns the highest element
+     * @return the highest element
+     */
     public Comparable peek(){
+    	
+    	if(highestElement==null) {
+    		
+    		return null;
+    	}
+    	else {
         Comparable value = highestElement.getValue();
         return value;
     }
+    }
 
-    @Override
-
+    
+    /**
+     * check if the stack contains our inputValue
+     * @param inputValue value we want to check if it is in the stack
+     * @return if the stack contains the element
+     */
     public boolean contains(T inputValue){
         return contains(highestElement,inputValue);
     }
-
+    /**
+     * check if the stack contains out inputValue from method contains(T inputValue)
+     * @param stackElement element that is actually checked
+     * @param inputValue value we want to check if it is in the stack
+     * @return if the stack contains the element or the next stack element that has to be checked
+     */
     private boolean contains(StackElement<T> stackElement,T inputValue)
     {
         if(stackElement == null)
@@ -97,7 +135,11 @@ public class Stack<T> implements List {
 
 
 
-    @Override
+
+    /**
+     * puts the elements of the stack into an array
+     * @return the stack as an array
+     */
     public Comparable[] returnAsArray() {
 
         Comparable[] array = new Comparable[size()];
@@ -108,7 +150,7 @@ public class Stack<T> implements List {
 
         }
 
-
         return array;
     }
 }
+

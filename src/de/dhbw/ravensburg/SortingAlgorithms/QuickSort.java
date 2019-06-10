@@ -6,7 +6,7 @@ public class QuickSort {
 
 
     /**
-     *
+     * Sorting the elements on the right and left side of the pivot 
      * @param arr array which has to be sorted
      * @param start at which index do we want to start the quicksort
      * @param end to which index do we want to sort?
@@ -25,7 +25,7 @@ public class QuickSort {
 
 
     /**
-     *
+     *  Find the right pivot
      * @param arr array which has to be sorted
      * @param start at which index do we want to start the quicksort
      * @param end to which index do we want to sort?

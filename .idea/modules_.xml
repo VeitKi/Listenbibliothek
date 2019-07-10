@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/Listenbibliothek.iml" filepath="$PROJECT_DIR$/Listenbibliothek.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Listenbibliothek.iml" filepath="$PROJECT_DIR$/.idea/Listenbibliothek.iml" />
+>>>>>>> 47790211ec46cfd08bd1fae99837a9e72f188321
+    </modules>
+  </component>
+</project>

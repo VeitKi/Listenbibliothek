@@ -1,51 +1,108 @@
 package de.dhbw.ravensburg.SearchTree;
 
 import de.dhbw.ravensburg.Interface.List;
+import de.dhbw.ravensburg.Interface.Sortable;
 
-public class Suchbaum implements List {
+import java.awt.*;
 
-    @Override
+
+public class Suchbaum<T extends Comparable>extends Sortable implements List<T> {
+
+    /**
+     * Attribute
+     */
+    SuchbaumElement first;
+    Comparable[] output;
+
+    /**
+     * Constructor which defines an End of the List
+     */
+    public Suchbaum() {
+        this.first = null;
+    }
+
+
+    /**
+     * checks if the list is empty
+     *
+     * @return the method to the first element of the list
+     */
     public boolean isEmpty() {
-        return false;
+        return first == null;
     }
 
-    @Override
+    /**
+     * checks the size of the list
+     *
+     * @return the method to the first element of the list
+     */
     public int size() {
-        return 0;
+        return first.length();
     }
 
-    @Override
-    public void addElement(Object value) {
-
+    /**
+     * add an element to the list
+     *
+     * @param content
+     */
+    public void addElement(T content) {
+        if (first == null) {
+            first = new SuchbaumElement(content);
+        } else {
+            first = first.addElement(new SuchbaumElement(content));
+        }
     }
 
-    @Override
-    public void addOtherList(List list) {
-
-    }
-
-    @Override
+    /**
+     * deletes every element
+     */
     public void removeAll() {
-
+        first = null;
     }
 
-    @Override
-    public boolean contains(Object value) {
+    /**
+     * checks if the element is contained in the list
+     *
+     * @param content
+     * @return the method to the first element in the list
+     */
+    public boolean contains(Comparable content) {
+        if(first != null)
+        return first.contains(content);
         return false;
     }
 
-    @Override
-    public boolean containsAll(List list) {
-        return false;
+    /**
+     * delete the certain object
+     *
+     * @param content
+     */
+    public void removeCertain(Comparable content) {
+        first.removeCertain(content);
     }
 
-    @Override
-    public void removeCertain(Object value) {
-
+    /**
+     * add every element of the list to an array
+     *
+     * @return the new array
+     */
+    public Comparable[] returnAsArray() {
+        output = new Comparable[size()];
+        for (int i = 0; i < size(); i++) {
+            output[i] = First();
+            removeCertain(First());
+        }
+        return output;
     }
 
-    @Override
-    public Object[] returnAsArray() {
-        return new Object[0];
+    /**
+     * read the first element in the list
+     *
+     * @return the content of the firnst element in the list
+     */
+    public Comparable First() {
+        return first.getValue();
     }
+
+
 }

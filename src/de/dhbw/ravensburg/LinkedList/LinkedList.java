@@ -1,101 +1,177 @@
 package de.dhbw.ravensburg.LinkedList;
 import de.dhbw.ravensburg.Interface.List;
+import de.dhbw.ravensburg.Interface.Sortable;
 
-public class LinkedList <T> {
+import java.security.spec.ECField;
 
-    //Attribute
+public class LinkedList <T extends Comparable> extends Sortable implements List<T>{
+
+    /**Attribute
+     *
+     */
     LinkedListElement first;
     Object[] output;
 
-    //Im Konstruktor für die List wird direkt ein Endpunkt gesetzt
+    /**
+     * Constructor instantiatesm the end of the List
+     */
     public LinkedList() {
-        this.first = new Finish();
+        this.first = new Finish(null);
     }
 
 
-    // 1. Es wird überprüft ob die List leer ist
+    /**
+     * checks if the list is empty
+     * @return the method to the first element of the list
+     */
     public boolean isEmpty() {
-        return first.isEmpty();
+            return first.isEmpty();
+
     }
 
-    // 2. Die Länge der Liste wird geprüft
+    /**
+     * checks the size of the list (the finish doesn't count)
+     * @return the method to the first element of the list
+     */
     public int size() {
-        return first.length();
+
+            return first.length();
+
     }
 
-    // 3. Ein Element wird hinzugefügt
+    /**
+     * add an element to the list (default at the end)
+     * @param content
+     */
     public void addElement(T content) {
         first = first.addElement(new LinkedListElement(content));
     }
 
-    // 4. fügt eine alle Elemente einer anderen Liste der aktuellen hinzu; Man sucht das Element an der Stelle i, nimmt davon den content, dieser wird gecastet und anschließend der Liste hinzugefügt
-    public void addOtherList(LinkedList newList) {
-        for (int i = 0; i < newList.size(); i++) {
-            addElement((T) newList.getElementAt(i));
-        }
-    }
 
-    // 5. Löscht alle Elemente
+    /**
+     * deletes every element
+     */
     public void removeAll() {
-        first = new Finish();
+        first = new Finish(null);
     }
 
-    // 6. Prüft ob ein Objekt in der Liste enthalten ist
+    /**
+     * checks if the element is contained in the list
+     * @param content
+     * @return the mehtod to the first element in the list
+     */
     public boolean contains(T content) {
         return first.contains(content);
     }
 
-    // 7. Überprüft ob alle Elemente einer Liste in der Liste enthalten sind
-    public boolean containsAll(LinkedList otherList) {
-        for (int i = 0; i < otherList.size(); i++) {
-            if (!contains((T) otherList.getElementAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // 8. löscht sich selbst und gibt dem Objekt vor ihm das Objekt hinter ihm zurück
+    /**
+     * delete the certain object
+     * @param content
+     */
     public void removeCertain(T content) {
-        first.removeCertain(content);
+            try {
+                first = first.removeCertain(content);
+            }
+            catch(Exception e)
+            {
+                System.out.println("Das Element ist nicht in der Liste. Es wurde nichts entfernt.");
+            }
+
     }
 
-    // 9. Fügt alle Elemente der Liste in ein Array ein
+    /**
+     * add every element of the list to an array
+     * @return the new array
+     */
     public Object[] returnAsArray() {
-        output = new Object[this.size()];
+        output = new Object[size()];
         for (int i = 0; i < size(); i++) {
             output[i] = (Object) getElementAt(i);
         } return output;
     }
 
-    // 10. Lesen des ersten Elements
+    /**
+     * read the first element in the list
+     * @return the content of the firnst element in the list
+     */
     public T First() {
         return (T) first.content;
     }
 
-    // 11. Objekt an bestimmter Stelle einfügen
-    public void add(int Index, T content) {
-        first.add(Index, content);
+    /**
+     * add an object at the defined index
+     * @param Index
+     * @param content
+     */
+    public void addElementAt(int Index, T content) {
+        try {
+            first = first.add(Index, content);
+        } catch (NullPointerException e) {
+            System.out.println("Die Methode addElementAt wurde abgebrochen. Das mitgegebene Element war null.");
+
+        } catch (IndexOutOfBoundsException f)
+        {
+            System.out.println("Die Methode addElementAt wurde abgebrochen. Der Index war zu groß.");
+
+        }
     }
 
-    // 12. löscht ein Objekt an einem bestimmten Index
+
+    /**
+     * delete an object at the defined index
+     * @param Index
+     */
     public void deleteAt(int Index) {
-        first.deleteAt(Index);
+        try {
+            first = first.deleteAt(Index);
+        }catch(IndexOutOfBoundsException e)
+        {
+            System.out.println("Der Index war zu groß. Es wurde nichts gelöscht.");
+        }
     }
 
-    // 13. Manipulieren eines Elements an gegebener Position (Löschen und Wiedereinsetzen)
+    /**
+     * change the element or the content of the element at the defined index
+     * @param Index
+     * @param content
+     */
     public void change(int Index, T content) {
-        first.change(Index, content);
+        try{
+            first.change(Index, content);
+        }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("Der Index war zu groß. Es wurde nichts geändert.");
+        }
+
     }
 
-    // 14. gibt den Index eines über den content gesuchten Elements zurück
+    /**
+     * searchs the index of en element with a defined content
+     * @param content
+     * @return the index of the element with the defined content
+     */
     public int getElementIndex(T content) {
-        return first.getElementIndex(content);
+        try {
+            return first.getElementIndex(content);
+        }
+        catch(IllegalArgumentException e){
+            throw e;
+        }
     }
 
-    //Das Element an der Stelle Index wird zurückgegeben
+    /**
+     * @param Index
+     * @return the content at the defined index
+     */
     public T getElementAt(int Index) {
-        return (T) first.getElementAt(Index).content;
+        try {
+            return (T) first.getElementAt(Index).content;
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            System.out.println("Methode getElementAt: Dieser Index existiert nicht.");
+            throw e;
+        }
     }
 
 }

@@ -26,21 +26,6 @@ public interface List <T extends Comparable>  {
         void addElement(T value);
 
         /**
-         * Adds an element at a certain position
-         * @param value
-         * @param i
-         */
-        void addElementAt(int index, T value);
-
-
-        /**
-         * Adds all objects from an other list to the current one
-         * @param list objects are added from this list to the current one
-         */
-        void addOtherList(List list);
-
-
-        /**
          * Removes all objects from the list
          */
         void removeAll();
@@ -53,13 +38,6 @@ public interface List <T extends Comparable>  {
          */
         boolean contains(T value);
 
-
-        /**
-         * Checks if the committed list contains the same elements as the current list
-         * @param list do the elements of this list accord to the current one?
-         * @return returns true if the committed list contains the same elements as the current list
-         */
-        boolean containsAll(List list);
 
 
         /**
@@ -75,11 +53,5 @@ public interface List <T extends Comparable>  {
          */
         Object[] returnAsArray();
 
-        /**
-         * Gives element at certain position
-         * @param
-         * @return returns certain element
-         */
-        T getElement(int i);
 
 }

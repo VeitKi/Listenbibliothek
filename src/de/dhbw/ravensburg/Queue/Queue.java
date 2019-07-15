@@ -1,116 +1,86 @@
 package de.dhbw.ravensburg.Queue;
 
 import de.dhbw.ravensburg.Interface.List;
+import de.dhbw.ravensburg.Interface.Sortable;
+import de.dhbw.ravensburg.LinkedList.LinkedList;
 
 import java.lang.reflect.Array;
 
-public class Queue <T extends Comparable> implements List<T> {
+public class Queue <T extends Comparable>extends Sortable implements List<T> {
 
-    QueueElement firstElement;
-    QueueElement lastElement;
+    private LinkedList embeddedList;
+
+
+    public Queue()
+    {
+        embeddedList = new LinkedList();
+    }
 
     @Override
     public boolean isEmpty() {
-        return firstElement ==  null;
+        return embeddedList.isEmpty();
     }
 
     @Override
     public int size() {
-        return firstElement.count();
+        return embeddedList.size();
     }
 
     @Override
     public void addElement(T value){
-        if(this.isEmpty()) {
-            firstElement = new QueueElement(value);
-            lastElement = firstElement;
-        } else {
-            lastElement = lastElement.setNext(value);
-        }
+        embeddedList.addElement(value);
     }
 
     @Override
-    public void addOtherList(List list) {
-
-        for(int i=0; i<=size();i++){
-            lastElement = lastElement.setNext(list.getElement(i));
-        }
-    }
-
-    @Override
-    public void removeAll() {
-
-            lastElement = null;
-            firstElement = null;
+    public void removeAll()
+    {
+        embeddedList.removeAll();
     }
 
     @Override
     public boolean contains(T value) {
 
         for(int i=0; i<=size();i++ ){
-            if(getElement(i) == value){
+            if(embeddedList.getElementAt(i) == value){
                 return true;
             }
         }
         return false;
     }
 
-    @Override
-    public boolean containsAll(List list) {
-
-        for(int i=0; i<=size();i++ ){
-            if(!this.contains((T)list.getElement(i))){
-                return false;
-            }
-        }
-        return true;
-    }
 
     @Override
     public void removeCertain(T value) {
 
-        firstElement.removeCertain(value);
     }
+
 
     @Override
     public Object[] returnAsArray() {
-        Object[] array = new Object[size()];
-        for(int i=0; i<=size();i++){
-            array[i] = (Object) this.getElement(i);
-        }
-        return array;
+        return embeddedList.returnAsArray();
     }
 
-    @Override
-    public void addElementAt(int index, T value) {
-        firstElement.add(index, value);
 
-    }
 
-    @Override
-    public T getElement(int i) {
-        return (T) firstElement.getElement(i);
-    }
+    //Speziell für Queue:
 
     /**
      * Gives first element of the list
      * @return returns first element
      */
-    public T returnFirst(){
+    public T peek(){
 
-        return (T)firstElement;
+        return (T) embeddedList.getElementAt(0);
     }
 
     /**
      * Gives first element of the list and deletes it
      * @return returns first element
      */
-    public T returnFirstAndDelete(){
-
-        T first = (T)firstElement;
-        firstElement = null;
-
-        return first;
+    public T enqueue(){
+        T value = (T) embeddedList.getElementAt(0);
+        embeddedList.removeCertain(value);
+        return value;
 
     }
 }

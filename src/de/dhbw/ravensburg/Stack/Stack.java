@@ -1,51 +1,55 @@
 package de.dhbw.ravensburg.Stack;
 
+import de.dhbw.ravensburg.Interface.List;
+import de.dhbw.ravensburg.Interface.Sortable;
+import de.dhbw.ravensburg.LinkedList.LinkedList;
+
 import java.util.NoSuchElementException;
 
-public class Stack<T> implements List {
+public class Stack<T extends Comparable>extends Sortable implements List<T> {
 
 
-	/**
-	 * defining parameters
-	 */
-	
-	//size from the stack
-	private int currentHigh = 0;
-	
-	//"Head" of the stack
-    StackElement<T> highestElement = null;
-
-
-
- 
     /**
-     * 
+     * defining parameters
+     */
+
+    //size of the stack
+    private int currentHigh = 0;
+
+    //"Head" of the stack
+    LinkedList embeddedList = new LinkedList();
+
+    public void addElementAt(int Index, T content) {
+        embeddedList.addElementAt(Index, content);
+    }
+
+    public void removeCertain(T element) {
+        embeddedList.removeCertain(element);
+    }
+
+    public T getElementAt(int Index) {
+        return (T) embeddedList.getElementAt(Index);
+    }
+
+    /**
      * @return if the stack is Empty or has elements
      */
     public boolean isEmpty() {
-
-        if (highestElement == null) {
-
-            return true;
-        } else {
-
-            return false;
-        }
-
+        return embeddedList.isEmpty();
     }
 
-    
     //adds an element
+    public void addElement(T element) {
+        push(element);
+    }
+
     /**
-     * adding an element to the stack
+     * adding an element to the stack on last place.
+     *
      * @param value element which we want to add into the stack
      */
-    public void push(Comparable value) {
-        StackElement<T> newElement = new StackElement<T>();
-        newElement.setValue(value);
-        newElement.setNext(highestElement);
-        highestElement = newElement;
-        
+    public void push(T value) {
+        embeddedList.addElementAt(0, value);
         //size grows
         currentHigh++;
 
@@ -57,12 +61,12 @@ public class Stack<T> implements List {
      */
     public void removeAll() {
 
-        highestElement=null;
+        embeddedList = new LinkedList();
+    }
 
-        }
-    
     /**
      * how many element has the stack?
+     *
      * @return the size of the stack
      */
     public int size() {
@@ -70,87 +74,49 @@ public class Stack<T> implements List {
         return currentHigh;
     }
 
-    
+
     /**
      * returns the highest element and delete it from the stack
+     *
      * @return the highest element of the stack
      */
     public Comparable pop() {
-
-        if (isEmpty()) {
-            throw new NoSuchElementException("Underflow Exception");
-        } else {
-
-            currentHigh--;
-            Comparable value = highestElement.getValue();
-            highestElement = highestElement.getNext();
-            return value;
-
-        }
+        Comparable content = embeddedList.getElementAt(size()-1);
+        embeddedList.deleteAt(size()-1);
+        currentHigh--;
+        return content;
     }
-    
-    
+
 
     /**
      * returns the highest element
+     *
      * @return the highest element
      */
-    public Comparable peek(){
-    	
-    	if(highestElement==null) {
-    		
-    		return null;
-    	}
-    	else {
-        Comparable value = highestElement.getValue();
-        return value;
-    }
+    public Comparable peek() {
+
+        return embeddedList.getElementAt(size()-1);
     }
 
-    
+
     /**
      * check if the stack contains our inputValue
+     *
      * @param inputValue value we want to check if it is in the stack
      * @return if the stack contains the element
      */
-    public boolean contains(T inputValue){
-        return contains(highestElement,inputValue);
+    public boolean contains(T inputValue) {
+        return embeddedList.contains(inputValue);
     }
-    /**
-     * check if the stack contains out inputValue from method contains(T inputValue)
-     * @param stackElement element that is actually checked
-     * @param inputValue value we want to check if it is in the stack
-     * @return if the stack contains the element or the next stack element that has to be checked
-     */
-    private boolean contains(StackElement<T> stackElement,T inputValue)
-    {
-        if(stackElement == null)
-            return false;
-
-        if(stackElement.getValue().equals(inputValue))
-            return true;
-
-        return contains(stackElement.next,inputValue);
-    }
-
-
-
 
     /**
      * puts the elements of the stack into an array
+     *
      * @return the stack as an array
      */
-    public Comparable[] returnAsArray() {
+    public Object[] returnAsArray() {
 
-        Comparable[] array = new Comparable[size()];
-
-        for (int i=size(); 0< i; i--) {
-
-            array[i] = this.pop();
-
-        }
-
-        return array;
+        return embeddedList.returnAsArray();
     }
 }
 
